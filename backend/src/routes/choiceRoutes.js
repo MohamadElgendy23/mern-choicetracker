@@ -1,13 +1,13 @@
 import express from "express";
 import {
-  getChoicesById,
+  getChoicesByCategoryId,
   createChoice,
   updateChoice,
   deleteChoice,
-} from "../controllers/categoryController.js";
+} from "../controllers/choiceController.js";
 const router = express.Router();
 
-router.get("/:categoryId", getChoicesById);
+router.get("/:categoryId", getChoicesByCategoryId);
 router.post("/:categoryId", createChoice);
 router.put("/:choiceId", updateChoice);
 router.delete("/:choiceId", deleteChoice);
