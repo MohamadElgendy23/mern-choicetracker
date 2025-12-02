@@ -7,10 +7,9 @@ import {
 } from "../controllers/categoryController.js";
 const router = express.Router();
 
-router.get("/", getAllCategories);
-router.get("/:id", getCategoryById);
-router.post("/", createCategory);
-router.put("/:id", updateCategory);
-router.delete("/:id", deleteCategory);
+router.get("/:categoryId", getChoicesById);
+router.post("/:categoryId", createChoice);
+router.put("/:choiceId", updateChoice);
+router.delete("/:choiceId", deleteChoice);
 
 export default router;

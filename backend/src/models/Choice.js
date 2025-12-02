@@ -2,13 +2,14 @@ import mongoose from "mongoose";
 
 const choiceSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-    category: {
+    categoryId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
+      required: true,
+    },
+    text: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }
