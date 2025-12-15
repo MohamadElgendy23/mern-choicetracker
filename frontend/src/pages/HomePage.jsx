@@ -26,7 +26,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-orange-400">
+    <div className="min-h-screen w-full bg-base-200">
       <NavBar />
       <div className="max-w-7xl mx-auto p-4 mt-6">
         {loading && (
