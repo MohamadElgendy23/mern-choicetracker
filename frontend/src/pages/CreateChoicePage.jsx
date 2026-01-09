@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useParams } from "react-router";
 import toast from "react-hot-toast";
 import { ArrowLeftIcon } from "lucide-react";
 import api from "../lib/axios";
@@ -8,7 +8,7 @@ function CreateChoicePage() {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
+  const { categoryId } = useParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,11 +21,11 @@ function CreateChoicePage() {
     setLoading(true);
 
     try {
-      await api.post("/choices", {
+      await api.post(`/choices/${categoryId}`, {
         text,
       });
       toast.success("Choice created successfully!");
-      navigate("/");
+      setText("");
     } catch (error) {
       console.log("Error creating choice", error);
       toast.error("Failed to create choice");

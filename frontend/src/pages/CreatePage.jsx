@@ -14,18 +14,22 @@ function CreatePage() {
     e.preventDefault();
 
     if (!name) {
-      toast.error("Name fields is required");
+      toast.error("Name field is required");
       return;
     }
 
     setLoading(true);
 
     try {
-      await api.post("/categories", {
+      const res = await api.post("/categories", {
         name,
       });
+
+      const categoryId = res.data._id;
+
       toast.success("Category created successfully!");
-      navigate("/");
+
+      navigate(`/createchoice/${categoryId}`);
     } catch (error) {
       console.log("Error creating category", error);
       toast.error("Failed to create category");
@@ -59,22 +63,13 @@ function CreatePage() {
                   ></input>
                 </div>
 
-                <div className="card-actions justify-between gap-3">
+                <div className="card-actions justify-end">
                   <button
                     type="submit"
                     className="btn btn-primary"
                     disabled={loading}
                   >
                     {loading ? "Creating..." : "Create Category"}
-                  </button>
-                  <button
-                    className="btn btn-primary"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate("/createchoice");
-                    }}
-                  >
-                    Choices
                   </button>
                 </div>
               </form>

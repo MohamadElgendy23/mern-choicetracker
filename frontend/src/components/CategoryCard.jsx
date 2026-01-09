@@ -5,6 +5,8 @@ import { PencilIcon, TrashIcon } from "lucide-react";
 import api from "../lib/axios";
 
 function CategoryCard({ category, setCategories }) {
+
+    
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
@@ -18,13 +20,21 @@ function CategoryCard({ category, setCategories }) {
     <Link to={`/category/${category._id}`}>
       <div className="card bg-base-100 w-96 shadow-sm">
         <div className="card-body">
-          <h2 className="card-title">{category.name}</h2>
-          <p>{formatDate(new Date(category.createdAt))}</p>
+          <div className="flex items-center justify-center gap-2">
+            <h2 className="card-title">Category: </h2>
+            <p>{category.name}</p>
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            <h2 className="card-title">Date Created: </h2>
+            <p>{formatDate(new Date(category.createdAt))}</p>
+          </div>
+          <div className="flex items-center">
+            <h2 className="card-title">Choices: </h2>
+          </div>
           <div className="card-actions justify-end gap-3">
-            <PencilIcon size="5" />
+            <PencilIcon size="20" />
             <button onClick={handleDelete}>
-              <TrashIcon size="5" />
-              <span>Delete</span>
+              <TrashIcon size="20" />
             </button>
           </div>
         </div>

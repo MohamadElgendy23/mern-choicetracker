@@ -11,7 +11,10 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/create" element={<CreatePage />}></Route>
-        <Route path="/createchoice" element={<CreateChoicePage />}></Route>
+        <Route
+          path="/createchoice/:categoryId"
+          element={<CreateChoicePage />}
+        ></Route>
         <Route path="/category/:id" element={<CategoryDetailPage />}></Route>
       </Routes>
     </div>
