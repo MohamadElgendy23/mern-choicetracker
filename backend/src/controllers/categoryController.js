@@ -58,7 +58,7 @@ export async function updateCategory(req, res) {
 
 export async function deleteCategory(req, res) {
   try {
-    const deletedCategory = await Note.findByIdAndDelete(req.params.id);
+    const deletedCategory = await Category.findByIdAndDelete(req.params.id);
     if (!deletedCategory) {
       return res.status(404).json({ message: "Category not found" });
     }

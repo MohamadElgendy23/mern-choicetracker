@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import api from "../lib/axios";
 import NavBar from "../components/Navbar";
 import toast from "react-hot-toast";
@@ -28,13 +27,13 @@ function HomePage() {
   return (
     <div className="min-h-screen w-full bg-base-200">
       <NavBar />
+
       <div className="max-w-7xl mx-auto p-4 mt-6">
-        {loading && (
+        {loading ? (
           <div className="text-center text-green-800 py-10">
             Loading Categories...
           </div>
-        )}
-        {categories.length > 0 && (
+        ) : categories.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((category) => (
               <CategoryCard
@@ -43,6 +42,10 @@ function HomePage() {
                 setCategories={setCategories}
               />
             ))}
+          </div>
+        ) : (
+          <div className="text-center text-green-800 py-10">
+            No Categories. Add some.
           </div>
         )}
       </div>

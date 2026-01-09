@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { formatDate } from "../lib/utils";
 import { PencilIcon, TrashIcon } from "lucide-react";
 import api from "../lib/axios";
 
 function CategoryCard({ category, setCategories }) {
+  const [choices, setChoices] = useState([]);
 
-    
+  useEffect(() => {
+    const fetchChoices = async () => {
+      try {
+        const res = await api.get(`/choices/${category._id}`);
+        setChoices(res.data);
+      } catch (error) {
+        console.error("Error fetching choices", error);
+      }
+    };
+    fetchChoices();
+  }, []);
+
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
-      await api.delete(`categories/${category._id}`);
+      await api.delete(`/categories/${category._id}`);
       setCategories((prev) => prev.filter((cat) => cat._id !== category._id));
     } catch (error) {
       console.error("Error deleting category");
@@ -28,8 +40,13 @@ function CategoryCard({ category, setCategories }) {
             <h2 className="card-title">Date Created: </h2>
             <p>{formatDate(new Date(category.createdAt))}</p>
           </div>
-          <div className="flex items-center">
+          <div className="flex flex-col gap-2">
             <h2 className="card-title">Choices: </h2>
+            <ul className="list-disc ml-4">
+              {choices.map((choice) => (
+                <li>{choice.text}</li>
+              ))}
+            </ul>
           </div>
           <div className="card-actions justify-end gap-3">
             <PencilIcon size="20" />
