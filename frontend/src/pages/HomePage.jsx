@@ -30,7 +30,7 @@ function HomePage() {
 
       <div className="max-w-7xl mx-auto p-4 mt-6">
         {loading ? (
-          <div className="text-center text-green-800 py-10">
+          <div className="text-center text-red-700 py-10">
             Loading Categories...
           </div>
         ) : categories.length > 0 ? (
@@ -44,7 +44,7 @@ function HomePage() {
             ))}
           </div>
         ) : (
-          <div className="text-center text-green-800 py-10">
+          <div className="text-center text-red-700 py-10">
             No Categories. Add some.
           </div>
         )}
