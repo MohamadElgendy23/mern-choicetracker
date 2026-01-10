@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
 import CreateChoicePage from "./pages/CreateChoicePage";
+import EditChoicePage from "./pages/EditChoicePage";
 
 function App() {
   return (
@@ -15,6 +16,10 @@ function App() {
         <Route
           path="/createchoice/:categoryId"
           element={<CreateChoicePage />}
+        ></Route>
+        <Route
+          path="/editchoice/:choiceId"
+          element={<EditChoicePage />}
         ></Route>
       </Routes>
     </div>

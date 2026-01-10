@@ -30,6 +30,16 @@ function CategoryCard({ category, setCategories }) {
       console.error("Error deleting category");
     }
   };
+
+  const handleChoiceDelete = async (id) => {
+    try {
+      await api.delete(`/choices/${id}`);
+      setChoices((prev) => prev.filter((c) => c._id !== id));
+    } catch (error) {
+      console.error("Error deleting category");
+    }
+  };
+
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
       <div className="card-body">
@@ -45,11 +55,21 @@ function CategoryCard({ category, setCategories }) {
           <h2 className="card-title">Choices: </h2>
           <ul className="list-disc ml-4">
             {choices.map((choice) => (
-              <li>{choice.text}</li>
+              <div className="flex justify-between">
+                <li>{choice.text}</li>
+                <div className="flex gap-3">
+                  <button onClick={() => navigate(`/editchoice/${choice._id}`)}>
+                    <PencilIcon size="15" />
+                  </button>
+                  <button onClick={() => handleChoiceDelete(choice._id)}>
+                    <TrashIcon size="15" />
+                  </button>
+                </div>
+              </div>
             ))}
           </ul>
         </div>
-        <div className="card-actions justify-end gap-3">
+        <div className="card-actions justify-end gap-3 mt-5">
           <button onClick={() => navigate(`/edit/${category._id}`)}>
             <PencilIcon size="20" />
           </button>
