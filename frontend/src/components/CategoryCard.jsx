@@ -50,8 +50,9 @@ function CategoryCard({ category, setCategories }) {
           </ul>
         </div>
         <div className="card-actions justify-end gap-3">
-          <button onClick={() => navigate(`/edit/${category._id}`)}></button>
-          <PencilIcon size="20" />
+          <button onClick={() => navigate(`/edit/${category._id}`)}>
+            <PencilIcon size="20" />
+          </button>
           <button onClick={handleDelete}>
             <TrashIcon size="20" />
           </button>

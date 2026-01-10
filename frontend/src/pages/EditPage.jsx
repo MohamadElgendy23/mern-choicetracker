@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import toast from "react-hot-toast";
 import { ArrowLeftIcon } from "lucide-react";
@@ -11,6 +11,21 @@ function EditPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const res = await api.get(`/categories/${id}`);
+        setName(res.data.name);
+      } catch (error) {
+        toast.error("Failed to load category");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategory();
+  }, [id]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,13 +37,13 @@ function EditPage() {
     setLoading(true);
 
     try {
-      const res = await api.post(`/categories/${id}`, {
+      await api.put(`/categories/${id}`, {
         name,
       });
 
       toast.success("Category updated successfully!");
 
-      navigate(`/createchoice/${categoryId}`);
+      navigate("/");
     } catch (error) {
       console.log("Error updating category", error);
       toast.error("Failed to update category");
@@ -68,7 +83,7 @@ function EditPage() {
                     className="btn btn-primary"
                     disabled={loading}
                   >
-                    {loading ? "Creating..." : "Create Category"}
+                    {loading ? "Updating..." : "Update Category"}
                   </button>
                 </div>
               </form>

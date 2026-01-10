@@ -27,7 +27,7 @@ export async function createChoice(req, res) {
 
     const choice = new Choice({
       text,
-      categoryId: req.params.categoryId, // IMPORTANT
+      categoryId: req.params.categoryId,
     });
 
     const savedChoice = await choice.save();
