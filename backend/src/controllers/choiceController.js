@@ -17,6 +17,23 @@ export async function getChoicesByCategoryId(req, res) {
   }
 }
 
+export async function getChoiceById(req, res) {
+  try {
+    const { choiceId } = req.params;
+
+    const choice = await Choice.findById(choiceId);
+
+    if (!choice) {
+      return res.status(404).json({ message: "Choice not found" });
+    }
+
+    res.status(200).json(choice);
+  } catch (error) {
+    console.error("Error in getChoiceById controller", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
 export async function createChoice(req, res) {
   try {
     const { text } = req.body;

@@ -13,6 +13,7 @@ function EditPage() {
 
   useEffect(() => {
     const fetchCategory = async () => {
+      setLoading(true);
       try {
         const res = await api.get(`/categories/${id}`);
         setName(res.data.name);
@@ -62,7 +63,7 @@ function EditPage() {
 
           <div className="card bg-base-100">
             <div className="card-body">
-              <h2 className="card-title text-2xl mb-4">Create New Category</h2>
+              <h2 className="card-title text-2xl mb-4">Update Category</h2>
               <form onSubmit={handleSubmit}>
                 <div className="form-control mb-4">
                   <label className="label">

@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getChoicesByCategoryId,
+  getChoiceById,
   createChoice,
   updateChoice,
   deleteChoice,
@@ -8,6 +9,7 @@ import {
 const router = express.Router();
 
 router.get("/:categoryId", getChoicesByCategoryId);
+router.get("/category/:choiceId", getChoiceById);
 router.post("/:categoryId", createChoice);
 router.put("/:choiceId", updateChoice);
 router.delete("/:choiceId", deleteChoice);

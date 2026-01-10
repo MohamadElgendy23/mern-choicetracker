@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import { formatDate } from "../lib/utils";
-import { PencilIcon, TrashIcon } from "lucide-react";
+import { PencilIcon, TrashIcon, PlusIcon } from "lucide-react";
 import api from "../lib/axios";
 
 function CategoryCard({ category, setCategories }) {
@@ -52,7 +52,12 @@ function CategoryCard({ category, setCategories }) {
           <p>{formatDate(new Date(category.createdAt))}</p>
         </div>
         <div className="flex flex-col gap-2">
-          <h2 className="card-title">Choices: </h2>
+          <h2 className="card-title">
+            Choices:
+            <button onClick={() => navigate(`/createchoice/${category._id}`)}>
+              <PlusIcon size="30" color="green" />
+            </button>
+          </h2>
           <ul className="list-disc ml-4">
             {choices.map((choice) => (
               <div className="flex justify-between">
